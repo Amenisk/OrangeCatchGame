@@ -5,74 +5,35 @@ using UnityEngine;
 
 public class CheburashkaMove : MonoBehaviour
 {
-    [SerializeField] private Transform _container;
-    [SerializeField] private GameObject  _chebu;
-    [SerializeField] private GameObject _upBasketChebu;
-    [SerializeField] private float _movementSpeed;
-    private bool isLeft;
-    private bool isUp;
-
+    [SerializeField] private GameObject _basket;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            if(isUp)
-            {
-                Destroy(_upBasketChebu);
-                Instantiate(_chebu, _container);
-                isLeft = true;
-            }
-            if (!isLeft)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-                isLeft = true;
-            }
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            var target = transform.position;
-            target.x += horizontalInput;
-            transform.position = Vector3.MoveTowards(transform.position, target, _movementSpeed);
+            transform.localScale = new Vector3(0.3f, 0.3f, 1);
+            transform.localPosition = new Vector3(-0.59f, -1.42f, 0);
+            _basket.transform.localPosition = new Vector3(-7.62f, -2.57f, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            if (isUp)
-            {
-                Destroy(_upBasketChebu);
-                Instantiate(_chebu, _container);
-                transform.localScale = new Vector3(-1, 1, 1);
-                isLeft = false;
-            }
-            if (isLeft)
-            {
-                transform.localScale = new Vector3(-1, 1, 1);
-                isLeft = false;
-            }
-            float horizontalInput = Input.GetAxisRaw("Horizontal");
-            var target = transform.position;
-            target.x += horizontalInput;
-            transform.position = Vector3.MoveTowards(transform.position, target, _movementSpeed);
+            transform.localScale = new Vector3(-0.3f, 0.3f, 1);
+            transform.localPosition = new Vector3(0.39f, -1.42f, 0);
+            _basket.transform.localPosition = new Vector3(-7.62f, -2.57f, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            transform.localScale = new Vector3(1, 1, 1);
-            if (!isUp)
-            {
-                Destroy(_chebu);
-                Instantiate(_upBasketChebu, _container);
-                isUp = true;
-            }
-        }
+            transform.localScale = new Vector3(0.3f, 0.3f, 1);
+            transform.localPosition = new Vector3(-0.59f, -1.42f, 0);
+            _basket.transform.localPosition = new Vector3(-5.72f, 1.15f, 0);
 
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            transform.localScale = new Vector3(- 1, 1, 1);
-            if (!isUp)
-            {
-                Destroy(_chebu);
-                Instantiate(_upBasketChebu, _container);
-                isUp = true;
-            }
+            transform.localScale = new Vector3(-0.3f, 0.3f, 1);
+            transform.localPosition = new Vector3(0.39f, -1.42f, 0);
+            _basket.transform.localPosition = new Vector3(-5.72f, 1.15f, 0);
         }
     }
 }
